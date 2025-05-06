@@ -14,7 +14,7 @@ def download_image_from_url(url):
         response.raise_for_status()
         img = Image.open(BytesIO(response.content)).convert("RGB")
         # temp_path = f'data/test/temp_{uuid.uuid4().hex}.jpg'
-        temp_path = f'tmp/assets/temp_{uuid.uuid4().hex}.jpg'
+        temp_path = f'/tmp/assets/temp_{uuid.uuid4().hex}.jpg'
         img.save(temp_path)
         return temp_path
     except Exception as e:
