@@ -77,6 +77,7 @@ from app.utils import download_image_from_url
 import uvicorn
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 # Khởi tạo FastAPI
 app = FastAPI()
