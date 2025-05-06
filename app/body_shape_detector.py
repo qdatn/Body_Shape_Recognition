@@ -2,12 +2,21 @@ import tensorflow as tf
 import numpy as np
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import load_model
+import json
+import os
 
 class BodyShapeDetector:
     def __init__(self, model_path):
         self.model = load_model(model_path)
-        self.class_names = ['Hourglass', 'Inverted Triangle', 'Rectangle', 'Apple', 'Pear']
 
+        # Load class names
+        class_file = model_path.replace('.h5', '_classes.json')
+        if os.path.exists(class_file):
+            with open(class_file, 'r') as f:
+                self.class_names = json.load(f)
+        else:
+            self.class_names = ['Hourglass', 'Inverted Triangle', 'Rectangle', 'Apple', 'Pear']
+            
     def detect(self, image_path):
         # Đọc ảnh và tiền xử lý
         img = image.load_img(image_path, target_size=(224, 224))
